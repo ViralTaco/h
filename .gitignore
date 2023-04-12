@@ -1,0 +1,6 @@
+!.gitignore
+!./.git/*
+!./tst/test.cxx
+!./lib/h.h
+!example.cxx
+!CMakeLists.txt

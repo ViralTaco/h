@@ -1,11 +1,10 @@
-#include <cstring> // std::strlen
 #include <fmt/printf.h>
+#include <cstring> // std::strlen
 #include "lib/h.h"
 
 
 int main(int argc, char** argv) {
   if (argc < 2) return EXIT_FAILURE;
-  
   
   switch (h::hash(argv[1], std::strlen(argv[1]))) {
     using fmt::print;

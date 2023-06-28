@@ -1,0 +1,31 @@
+language: cpp
+os: linux
+dist: trusty
+jobs:
+  include:
+    - env: COMPILER=g++-8
+      dist: bionic
+      addons:
+        apt:
+          packages:
+            - g++-8
+
+    - env:
+      - COMPILER=clang++-9
+      dist: bionic
+      addons:
+        apt:
+          packages:
+            - clang-9
+
+before_install:
+  - sudo apt-get -y -d update
+install:
+  - sudo apt-get -y install ninja-build cmake
+  - export CXX=${COMPILER}
+  - export CMAKE_GEN="CodeBlocks - Unix Makefiles"
+  - ${CXX} --version
+script:
+  - cmake -DCMAKE_BUILD_TYPE=Debug -G "${CMAKE_GEN}" .
+  - cmake --build . --target test_libh -- -j 9
+  - cmake .

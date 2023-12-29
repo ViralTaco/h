@@ -1,6 +1,6 @@
 #ifndef com_viraltaco_h_h
-#define com_viraltaco_h_h "1.0.3"
-/// Copyright 2023 viraltaco_ <https://h.viraltaco.com>
+#define com_viraltaco_h_h "1.0.4"
+/// Copyright 2023 viraltaco_ <https://viraltaco.com/h>
 #include <numeric>
 
 namespace h::inline v1 {
@@ -31,8 +31,8 @@ namespace h::inline v1 {
    });
  }
  
- template <class CharT, size_t N>
- consteval auto hash(CharT const(&str)[N]) { return h::hash(str, N - 1u); }
+ template <size_t N>
+ consteval auto hash(char const(&str)[N]) { return h::hash(str, N - 1u); }
  
  inline namespace literals {
    consteval auto operator""_h(char const* str, size_t len) {

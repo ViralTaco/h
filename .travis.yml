@@ -25,6 +25,7 @@ install:
   - export CXX=${COMPILER}
   - export CMAKE_GEN="CodeBlocks - Unix Makefiles"
   - ${CXX} --version
+# noinspection SpellCheckingInspection
 script:
   - cmake -DCMAKE_BUILD_TYPE=Debug -G "${CMAKE_GEN}" .
   - cmake --build . --target test_libh -- -j 9

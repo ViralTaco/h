@@ -1,6 +1,6 @@
+#pragma once// Copyright 2023,2024 viraltaco_ <https://viraltaco.com/h>
 #ifndef com_viraltaco_h_h
-#define com_viraltaco_h_h "1.0.4"
-/// Copyright 2023 viraltaco_ <https://viraltaco.com/h>
+#define com_viraltaco_h_h "1.0.5"
 #include <numeric>
 
 namespace h::inline v1 {

@@ -38,7 +38,7 @@ Include the header to your .cpp file containing you main function.
 // ...
 
 int main(int argc, char** argv) {
-  switch (h::hash(argv[1], std::strlen(argv[1]))) {
+  switch (h::hash(argv[1])) {
     using namespace h::literals;
   case "foo"_h:
     // ...
@@ -54,25 +54,24 @@ int main(int argc, char** argv) {
 For a full example check out [example.cpp](./example.cpp).
 
 ```c++
-#include <cstring>     // std::strlen
-#include <cstdio>      // std::printf
-#include "include/h.h" // h::hash, h::operator ""_h
+#include <print>       // std::println
+#include "lib/h.h" // h::hash, h::operator ""_h
 
 int main(int argc, char** argv) {
   using namespace h::literals;
   
   if (argc < 2) return EXIT_FAILURE;
   
-  switch (h::hash(argv[1], std::strlen(argv[1]))) {
+  switch (h::hash(argv[1])) {
   case "--version"_h:
-    std::printf("com.viraltaco.h v%s\n", com_viraltaco_h_h);
+    std::println("com.viraltaco.h v{}", com_viraltaco_h_h);
     break;
   case "--help"_h:
   case "-h"_h:
-    std::printf("--help\n");
+    std::println("--help");
     break;
   default:
-    std::printf("Invalid input: '%s'\n", argv[1]);
+    std::println("Invalid input: '{}'", argv[1]);
     return EXIT_FAILURE;
   }
 }

@@ -3,20 +3,20 @@ os: linux
 dist: trusty
 jobs:
   include:
-    - env: COMPILER=g++-8
+    - env: COMPILER=g++-15
       dist: bionic
       addons:
         apt:
           packages:
-            - g++-8
+            - g++-15
 
     - env:
-      - COMPILER=clang++-9
+      - COMPILER=clang++-21
       dist: bionic
       addons:
         apt:
           packages:
-            - clang-9
+            - clang-21
 
 before_install:
   - sudo apt-get -y -d update
@@ -27,5 +27,5 @@ install:
   - ${CXX} --version
 script:
   - cmake -DCMAKE_BUILD_TYPE=Debug -G "${CMAKE_GEN}" .
-  - cmake --build . --target test_libh -- -j 9
+  - cmake --build . --target test_libh -- -j 21
   - cmake .

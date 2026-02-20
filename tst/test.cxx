@@ -1,12 +1,11 @@
 #include "../lib/h.h"
-#include <fmt/core.h>
+#include <print>
 
 auto main() -> int {
   using h::literals::operator ""_h;
-  using fmt::print, fmt::arg;
-#define PRINT_h(STR)                                                           \
-  print("\"{}\"_h{x:^{w}}{h:#x}\n{x:^33}{h:>64b}\n", STR,                      \
-    arg("x", ' '), arg("w", 30u - sizeof STR), arg("h", STR##_h));             \
+#define PRINT_h(STR)                                            \
+  std::print("\"{0}\"_h{1:^{2}}{3:#x}\n{1:^33}{3:>64b}\n", STR, \
+    ' ', 30u - sizeof STR, STR##_h);                            \
   static_assert (__LINE__, "Semicolon Required.")
   
   PRINT_h("Hello");
@@ -22,6 +21,6 @@ auto main() -> int {
   PRINT_h("Hello, World!");
 #undef PRINT_h
   static_assert ("hello"_h != "Hoi"_h);
-  static_assert ("hello"_h == "HELLO"_h);
+  static_assert ("hello"_h != "HELLO"_h); // CASE SENSITIVE IN V2
   static_assert ("hello"_h == h::hash("hello"));
 }

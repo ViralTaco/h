@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
 ## Running the tests
 
 Run the CMake project `test_libh`.  
-Or compile and run `./tst/test.cxx`.
+Or compile and run `./tests/test.cxx`.
 
 ## Deployment
 

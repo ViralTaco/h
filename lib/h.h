@@ -13,13 +13,9 @@ namespace h::inline v2 {
  constexpr auto hash(const std::string_view str) noexcept -> hash_t {
    enum: hash_t { kOffset = 0X9E3779B9 , kPrime = 0x517cc1ed };
 
-   static constexpr auto do_hash = [] (auto h, char8_t c) noexcept -> hash_t {
-     h *= kPrime;
-     h ^= c;
-     return h;
-   };
-
-   return std::reduce(str.cbegin(), str.cend(), kOffset, do_hash);
+   return std::reduce(str.cbegin(), str.cend(), hash_t{ kOffset }, [] (auto h, auto c) {
+    return (h * kPrime) ^ c;
+   });
  }
  
  namespace literals {

@@ -18,7 +18,8 @@ set(OPTIMIZED_COPTS ${COPTS} -O3 -march=native)
 
 # 1. Target: tests
 find_package(fmt QUIET)
-add_subdirectory(tst)
+add_subdirectory(tests)
+add_subdirectory(bench)
 
 
 # 2. Target: compile and run example.cxx

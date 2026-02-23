@@ -2,7 +2,7 @@
 !.travis.yml
 !.gitignore
 !./.git/*
-!./tst/test.cxx
+!./tests/test.cxx
 !./lib/h.h
 !example.cxx
 !CMakeLists.txt

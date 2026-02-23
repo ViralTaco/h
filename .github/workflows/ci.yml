@@ -1,0 +1,36 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compiler: [ { cxx: g++, cc: gcc }, { cxx: clang++, cc: clang } ]
+        build_type: [ Debug, Release ]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build
+
+    - name: Configure CMake
+      run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      env:
+        CXX: ${{ matrix.compiler.cxx }}
+        CC: ${{ matrix.compiler.cc }}
+
+    - name: Build tests
+      run: cmake --build build --target tests
+
+    - name: Run tests
+      run: cmake --build build --target run-tests

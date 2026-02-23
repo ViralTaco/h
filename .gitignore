@@ -1,10 +1,6 @@
 !./.github/workflows/ci.yml
 !.gitignore
-<<<<<<< HEAD
-!.git
-=======
 !./.git/*
->>>>>>> main
 !./tests/test.cxx
 !./bench/bench.cxx
 !./*/CMakeLists.txt

@@ -7,8 +7,8 @@
 
 using h::literals::operator""_h;
 
-// Alternate Implementation 1: For-loop (same algorithm)
-constexpr h::hash_t hash_for(const std::string_view str) noexcept {
+// Alternate Implementation 1: For-loop (old algorithm)
+constexpr h::hash_t hash_old(const std::string_view str) noexcept {
   h::hash_t h = 0X9E3779B9;
   h::hash_t kPrime = 0x517cc1ed;
   for (auto c : str) {
@@ -39,7 +39,7 @@ constexpr h::hash_t hash_djb2(const std::string_view str) noexcept {
 TEST(HashCoreTest, HandlesEmptyString) {
   EXPECT_EQ(""_h, 5381);
   EXPECT_EQ(h::hash(""), 5381);
-  EXPECT_EQ(hash_for(""), 0X9E3779B9ULL);
+  EXPECT_EQ(hash_old(""), 0X9E3779B9ULL);
 }
 
 TEST(HashCoreTest, HandlesSingleCharacterAndNulls) {
@@ -90,7 +90,7 @@ TEST_P(ConsistencyTest, RandomizedMemoryLayoutConsistency) {
   
   // Consistency Check 1: String View vs String
   EXPECT_EQ(h::hash(target_span), h::hash(target_string));
-  EXPECT_EQ(hash_for(target_span), hash_for(target_string));
+  EXPECT_EQ(hash_old(target_span), hash_old(target_string));
   EXPECT_EQ(hash_fnv1a(target_span), hash_fnv1a(target_string));
   EXPECT_EQ(hash_djb2(target_span), hash_djb2(target_string));
 
@@ -100,7 +100,7 @@ TEST_P(ConsistencyTest, RandomizedMemoryLayoutConsistency) {
   // Consistency Check 3: Unique algos generate different hashes
   if (length > 0) {
     EXPECT_NE(h::hash(target_span), hash_fnv1a(target_span));
-    EXPECT_EQ(h::hash(target_span), hash_djb2(target_span));
+    EXPECT_NE(h::hash(target_span), hash_old(target_span));
   }
 }
 

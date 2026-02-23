@@ -5,7 +5,7 @@ get_filename_component(lib_name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${lib_name}
         LANGUAGES       CXX
 		VERSION 2.2.0
-        DESCRIPTION     "30 SLOC String hashing")
+		DESCRIPTION "25 SLOC Strings in switch")
 
 # Global Settings
 set(CMAKE_CXX_STANDARD 23)

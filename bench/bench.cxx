@@ -64,8 +64,8 @@ BENCHMARK_REGISTER_F(HashFixture, BM_HashStringView)
   ->Complexity(benchmark::oN);
 
 
-// Alternate Implementation 1: For-loop (same algorithm)
-constexpr h::hash_t hash_for(const std::string_view str) noexcept {
+// Alternate Implementation 1: For-loop (old algorithm)
+constexpr h::hash_t hash_old(const std::string_view str) noexcept {
   h::hash_t h = 0X9E3779B9;
   h::hash_t kPrime = 0x517cc1ed;
   for (auto c : str) {
@@ -74,19 +74,19 @@ constexpr h::hash_t hash_for(const std::string_view str) noexcept {
   return h;
 }
 
-BENCHMARK_DEFINE_F(HashFixture, BM_HashForLoop)(benchmark::State& state) {
+BENCHMARK_DEFINE_F(HashFixture, BM_HashOld)(benchmark::State& state) {
   std::mt19937 gen(state.thread_index());
   std::uniform_int_distribution<size_t> dis(0, strings.size() - 1);
 
   for (auto _ : state) {
     std::string_view sv = strings[dis(gen)];
-    auto hash = hash_for(sv);
+    auto hash = hash_old(sv);
     benchmark::DoNotOptimize(hash);
   }
   state.SetBytesProcessed(state.iterations() * state.range(0));
   state.SetComplexityN(state.range(0));
 }
-BENCHMARK_REGISTER_F(HashFixture, BM_HashForLoop)
+BENCHMARK_REGISTER_F(HashFixture, BM_HashOld)
   ->RangeMultiplier(8)->Range(8, 8192)
   ->Threads(1)->Threads(4)->Threads(8)
   ->Repetitions(3)->MinTime(0.5)

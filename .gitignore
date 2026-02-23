@@ -3,6 +3,8 @@
 !.gitignore
 !./.git/*
 !./tests/test.cxx
-!./lib/h.h
+!./bench/bench.cxx
+!./*/CMakeLists.txt
+!./lib/h.*
 !example.cxx
 !CMakeLists.txt

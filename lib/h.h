@@ -12,7 +12,7 @@ namespace h::inline v2 {
 
  constexpr auto hash(const std::string_view str) noexcept -> hash_t {
    return std::reduce(str.cbegin(), str.cend(), hash_t{5381},
-                      [](auto h, auto c) { return ((h << 5) | h) + c; });
+                      [](auto h, auto c) { return ((h << 5) + h) + c; });
  }
  
  namespace literals {

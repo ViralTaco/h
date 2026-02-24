@@ -19,6 +19,6 @@ namespace h::inline v2 {
   consteval auto operator""_h(char const* str, const size_t len) -> hash_t {
     return h::hash(std::string_view{ str, len });
   }
- } // h::inline v2::inline literals
+ } // h::inline v2::literals
 } // h::inline v2
 #endif // com_viraltaco_h_h

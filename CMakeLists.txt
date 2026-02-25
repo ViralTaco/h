@@ -4,8 +4,10 @@ get_filename_component(lib_name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
 project(${lib_name}
         LANGUAGES       CXX
-		VERSION 2.3.0
-		DESCRIPTION "25 SLOC Strings in switch")
+		VERSION         2.3.0
+		DESCRIPTION     "25 SLOC Strings in switch"
+        HOMEPAGE_URL    "https://github.com/viraltaco/h"
+)
 
 # Global Settings
 set(CMAKE_CXX_STANDARD 23)
@@ -17,10 +19,8 @@ set(COPTS -Wall -Wextra -Wpedantic -Wunreachable-code -Wredundant-decls)
 set(OPTIMIZED_COPTS ${COPTS} -O3 -march=native)
 
 # 1. Target: tests
-find_package(fmt QUIET)
 add_subdirectory(tests)
 add_subdirectory(bench)
-
 
 # 2. Target: compile and run example.cxx
 add_executable(example_bin example.cxx lib/h.h)

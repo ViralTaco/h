@@ -55,8 +55,8 @@ For examples check out [examples](./examples/).
 
 #### Argument Parser Brief Example:
 ```c++
-#include <print>   // std::println
 #include "lib/h.h" // h::hash, h::operator ""_h
+#include <print>   // std::println
 
 int main(int argc, char** argv) {
   using namespace h::literals;
@@ -76,16 +76,47 @@ int main(int argc, char** argv) {
     return EXIT_FAILURE;
   }
 }
-
 ```
 
-See [examples/options.cxx](./examples/options.cxx)
+See [examples/options.cxx](./examples/options.cxx)  
+Run the CMake project `run-options`
 
 #### Minimal Hash Map
 
+```c++
+#include "lib/h.h" // h::{ hash_t, hash }
+#include <vector>  // std::vector
+
+template <class T> struct HashMap {
+  std::vector<h::hash_t> keys;
+  std::vector<T> values;
+
+  constexpr T& operator [](const std::string_view key_str) {
+    const auto key = h::hash(key_str);
+    auto idx = 0zu;
+    for (const auto k: keys) {
+      if (k == key) { return values[idx]; }
+      ++idx;
+    }
+    keys.emplace_back(key);
+    values.push_back(T{});
+    return values[idx];
+  }
+};
+
+int main() {
+  HashMap<int> h{};
+  h["LMAO"] = 0XDadBeef;
+  return h["LMAO"] xor 0XDadBeef; // 0
+}
+```
+
+See [examples/hashmap.cxx](./examples/hashmap.cxx)  
+Run the CMake project `run-hashmap`
+
 ## Running the tests
 
-Run the CMake project `test_libh`.  
+Run the CMake project `run-tests`.  
 Or compile and run `./tests/test.cxx`.
 
 ## Deployment

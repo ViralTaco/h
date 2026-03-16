@@ -53,7 +53,8 @@ int main(int argc, char** argv) {
 
 For examples check out [examples](./examples/).
 
-#### Argument Parser Brief Example:
+#### Argument Parser Example
+
 ```c++
 #include "lib/h.h" // h::hash, h::operator ""_h
 #include <print>   // std::println

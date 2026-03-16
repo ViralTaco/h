@@ -22,8 +22,8 @@ set(OPTIMIZED_COPTS ${COPTS} -O3 -march=native)
 add_subdirectory(tests)
 add_subdirectory(bench)
 
-# 2. Target: compile and run example.cxx
-add_executable(example_bin example.cxx lib/h.h)
+# 2. Target: compile and run options.cxx
+add_executable(example_bin examples/options.cxx lib/h.h)
 set_target_properties(example_bin PROPERTIES OUTPUT_NAME example)
 
 # Custom target to fulfill "compile and run" requirement

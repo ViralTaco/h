@@ -51,8 +51,9 @@ int main(int argc, char** argv) {
 
 ### Example
 
-For a full example check out [example.cpp](./example.cpp).
+For examples check out [examples](./examples/).
 
+#### Argument Parser Brief Example:
 ```c++
 #include <print>   // std::println
 #include "lib/h.h" // h::hash, h::operator ""_h
@@ -77,6 +78,10 @@ int main(int argc, char** argv) {
 }
 
 ```
+
+See [examples/options.cxx](./examples/options.cxx)
+
+#### Minimal Hash Map
 
 ## Running the tests
 

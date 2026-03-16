@@ -1,5 +1,5 @@
 #ifndef com_viraltaco_h_h
-#define com_viraltaco_h_h "com.viraltaco.h v2.3.0"
+#define com_viraltaco_h_h "com.viraltaco.h v" "2.3.1"
 /// Copyright 2026 viraltaco_ <https://viraltaco.com/h>
 #include <numeric>     // std::accumulate
 #include <string_view> // std::string_view
@@ -11,8 +11,9 @@ namespace h::inline v2 {
  } // h::inline v2::inline details
 
  constexpr auto hash(const std::string_view str) noexcept -> hash_t {
-   return std::accumulate(str.cbegin(), str.cend(), hash_t{5381},
-                      [](auto h, auto c) { return ((h << 5) + h) + c; });
+  // DJB2
+  return std::accumulate(str.cbegin(), str.cend(), static_cast<hash_t>(5381),
+                         [](auto h, unsigned char c) { return ((h << 5) + h) + c; });
  }
  
  namespace literals {

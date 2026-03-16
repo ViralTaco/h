@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 For a full example check out [example.cpp](./example.cpp).
 
 ```c++
-#include <print>       // std::println
+#include <print>   // std::println
 #include "lib/h.h" // h::hash, h::operator ""_h
 
 int main(int argc, char** argv) {

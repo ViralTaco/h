@@ -23,7 +23,8 @@ add_subdirectory(tests)
 add_subdirectory(bench)
 
 # 2. Target: compile and run options.cxx
-add_executable(example_bin examples/options.cxx lib/h.h)
+add_executable(example_bin examples/options.cxx lib/h.h
+		examples/hashmap.cxx)
 set_target_properties(example_bin PROPERTIES OUTPUT_NAME example)
 
 # Custom target to fulfill "compile and run" requirement

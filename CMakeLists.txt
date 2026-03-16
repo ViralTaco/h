@@ -23,15 +23,23 @@ add_subdirectory(tests)
 add_subdirectory(bench)
 
 # 2. Target: compile and run options.cxx
-add_executable(example_bin examples/options.cxx lib/h.h
-		examples/hashmap.cxx)
-set_target_properties(example_bin PROPERTIES OUTPUT_NAME example)
+add_executable(options_bin examples/options.cxx lib/h.h)
+set_target_properties(options_bin PROPERTIES OUTPUT_NAME options)
 
-# Custom target to fulfill "compile and run" requirement
-add_custom_target(run-example
-    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/example "--version"
-    DEPENDS example_bin
-    COMMENT "Building and running example with --version argument"
+add_custom_target(run-options
+		COMMAND ${CMAKE_CURRENT_BINARY_DIR}/options "--version"
+		DEPENDS options_bin
+		COMMENT "Building and running options.cxx with argument --version"
+)
+
+# 2bis. Target: compile and run hashmap.cxx
+add_executable(hashmap_bin examples/hashmap.cxx lib/h.h)
+set_target_properties(hashmap_bin PROPERTIES OUTPUT_NAME hashmap)
+
+add_custom_target(run-hashmap
+		COMMAND ${CMAKE_CURRENT_BINARY_DIR}/hashmap
+		DEPENDS hashmap_bin
+		COMMENT "Building and running hashmap.cxx"
 )
 
 # 3. Target: run tests, then compile, optimized as a dynamic library
